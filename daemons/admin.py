@@ -8,9 +8,9 @@ class DaemonAdmin(admin.ModelAdmin):
     readonly_fields = ["running_status", "last_update_time"]
 
 class CronAdmin(admin.ModelAdmin):
-    list_display = ["display_name", "script_name", "last_started_time", "last_finished_time","log"]
+    list_display = ["display_name", "script_name","run_time", "last_started_time", "last_finished_time","log"]
     list_display_links = ["log"]
-    readonly_fields = ["last_started_time", "last_finished_time"]
+    readonly_fields = ["last_started_time", "last_finished_time","log"]
 
 admin.site.register(models.Daemon ,DaemonAdmin)
 admin.site.register(models.Cron,CronAdmin)

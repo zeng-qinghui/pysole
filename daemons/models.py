@@ -7,7 +7,7 @@ class Daemon(models.Model):
     display_name = models.CharField("名称", max_length=256, unique=True)
     script_name = models.CharField("脚本路径", max_length=256)
     running_status = models.SmallIntegerField(
-        "状态", choices=[(-1, 'STOP'), (0, 'UNKNOWN'), (1, 'RUNNING'), (2, 'WAITING')]
+        "状态", choices=[(-1, 'STOP'), (0, 'UNKNOWN'), (1, 'RUNNING'), (2, 'WAITING')], default=0
     )
     last_update_time = models.DateTimeField("最后更新时间", auto_now=True)
 
@@ -25,6 +25,7 @@ class Cron(models.Model):
     id = models.AutoField(primary_key=True)
     display_name = models.CharField("名称", max_length=256, unique=True)
     script_name = models.CharField("脚本路径", max_length=256)
+    run_time = models.CommaSeparatedIntegerField("运行策略", max_length=32)
     last_started_time = models.DateTimeField("最后开始时间", auto_now=True)
     last_finished_time = models.DateTimeField("最后结束时间", auto_now=True)
     log = models.TextField("最后运行日志")
